@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Neon Cyber Chat</title>
+        <link rel="stylesheet" href="loginpage/style.css">
+        <script>
+          // Simple check for login (to be replaced with real JWT check)
+          if (!localStorage.getItem('jwt')) {
+                window.location.href = './loginpage/index.html';
+          }
+        </script>
+</head>
+<body>
+        <div class="cyber-grid">
+                <div class="grid-line grid-h-1"></div>
+                <div class="grid-line grid-v-1"></div>
+                <div class="grid-line grid-h-2"></div>
+                <div class="grid-line grid-v-2"></div>
+                <div class="grid-line grid-h-3"></div>
+                <div class="cyber-glitch glitch-1"></div>
+                <div class="cyber-glitch glitch-2"></div>
+        </div>
+
+                <!-- LOGIN/ROOM UI: Centered, smaller box -->
+                <div class="login-container" id="loginContainer">
+                        <div class="cyber-terminal login-box">
+                                <div class="terminal-header">
+                                        <div class="terminal-buttons">
+                                                <div class="term-btn btn-red"></div>
+                                                <div class="term-btn btn-yellow"></div>
+                                                <div class="term-btn btn-green"></div>
+                                        </div>
+                                        <div class="terminal-title">CYPHER_NET_CHAT.exe</div>
+                                </div>
+                                <div class="cyber-content">
+                                        <div id="roomScreen">
+                                                <form class="neon-form" onsubmit="return false;">
+                                                        <div class="cyber-field">
+                                                                <div class="field-frame">
+                                                                        <div class="field-border"></div>
+                                                                        <input id="createRoomInput" placeholder=" " autocomplete="off" />
+                                                                        <label for="createRoomInput">&gt; CREATE_ROOM</label>
+                                                                        <div class="cyber-scanner"><div class="scan-line"></div></div>
+                                                                </div>
+                                                        </div>
+                                                        <button type="button" class="neon-button" onclick="return createRoom();">
+                                                                <div class="btn-matrix"></div>
+                                                                <span class="btn-text">[ CREATE ROOM ]</span>
+                                                                <div class="btn-loader"><div class="matrix-loader"><div class="matrix-bar"></div><div class="matrix-bar"></div><div class="matrix-bar"></div><div class="matrix-bar"></div></div></div>
+                                                                <div class="btn-glow"></div>
+                                                        </button>
+                                                        <div class="cyber-field">
+                                                                <div class="field-frame">
+                                                                        <div class="field-border"></div>
+                                                                        <input id="joinRoomInput" placeholder=" " autocomplete="off" />
+                                                                        <label for="joinRoomInput">&gt; JOIN_ROOM</label>
+                                                                        <div class="cyber-scanner"><div class="scan-line"></div></div>
+                                                                </div>
+                                                        </div>
+                                                        <button type="button" class="neon-button" onclick="return joinRoom();">
+                                                                <div class="btn-matrix"></div>
+                                                                <span class="btn-text">[ JOIN ROOM ]</span>
+                                                                <div class="btn-loader"><div class="matrix-loader"><div class="matrix-bar"></div><div class="matrix-bar"></div><div class="matrix-bar"></div><div class="matrix-bar"></div></div></div>
+                                                                <div class="btn-glow"></div>
+                                                        </button>
+                                                        <button type="button" class="neon-button" onclick="return joinGlobalRoom();" style="background:#222;color:#00ff41;border-color:#00ff41;">
+                                                                <span class="btn-text">[ JOIN GLOBAL ROOM ]</span>
+                                                        </button>
+                                                </form>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <!-- CHAT UI: Full size -->
+                <div class="chat-full-container hidden" id="chatFullContainer">
+                        <div class="cyber-terminal chat-full-box">
+                                <div class="terminal-header">
+                                        <div class="terminal-buttons">
+                                                <div class="term-btn btn-red"></div>
+                                                <div class="term-btn btn-yellow"></div>
+                                                <div class="term-btn btn-green"></div>
+                                        </div>
+                                        <div class="terminal-title">CYPHER_NET_CHAT.exe</div>
+                                </div>
+                                <div class="cyber-content">
+                                        <div id="chatScreen" class="chat-flex" style="display:flex; flex-direction:column; height: 100%; min-height: 500px;">
+                                                <div class="chat-header-row">
+                                                        <h2 id="roomTitle" class="cyber-title" style="margin-bottom: 0; flex:1; text-align:center;"></h2>
+                                                        <button class="neon-button chat-logout-btn" type="button" onclick="logout()" style="width:auto;min-width:80px;margin-bottom:0;background:#ff0080;border-color:#ff0080;color:white;">[ LOGOUT ]</button>
+                                                </div>
+                                                <div id="chatBox" class="chat-box" style="flex:1 1 auto; min-height:0; overflow-y:auto; background:#111; border-radius:10px; padding:16px; font-size:1.1rem; margin:16px 0;"></div>
+                                                <form class="neon-form chat-input-row" onsubmit="return false;" style="display:flex;align-items:center;gap:8px;">
+                                                        <div class="cyber-field" style="flex:1; margin-bottom:0;">
+                                                                <div class="field-frame">
+                                                                        <div class="field-border"></div>
+                                                                        <input id="messageInput" placeholder=" " autocomplete="off" style="width:100%;" />
+                                                                        <label for="messageInput">&gt; TYPE_MESSAGE</label>
+                                                                        <div class="cyber-scanner"><div class="scan-line"></div></div>
+                                                                </div>
+                                                        </div>
+                                                        <button class="neon-button" type="button" onclick="sendMessage()" style="width:auto;min-width:80px;margin-bottom:0;">[ SEND ]</button>
+                                                </form>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        <script src="./dist/client.js"></script>
+</body>
+</html>
